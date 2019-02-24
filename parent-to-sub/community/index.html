@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+    <body>
+        <iframe id='receiver' src='https://www.artropy.net'></iframe>
+        <script>
+            window.onload = function () {
+                localStorage.setItem('cartId', 'COMMUNITY-CART-ID');
+                console.log('This is the community cart id:');
+                console.log(localStorage.getItem('cartId'));
+                console.log('Firing Post message to Wordpress');
+                // Get the window displayed in the iframe.
+                const receiver = document.getElementById('receiver').contentWindow;
+                // A function to handle sending messages.
+                function sendMessage() {
+                    console.log('Sending Message');
+                    // Send a message with the text 'Hello Treehouse!' to the receiver window.
+                    receiver.postMessage(localStorage.getItem('cartId'), 'https://www.artropy.net');
+                }
+                sendMessage();
+                // document.getElementById('receiver').onload= function() {
+                //     console.log('IFrame Loaded');
+                //     sendMessage();
+                // }
+            }
+        </script>
+    </body>
+</html>
